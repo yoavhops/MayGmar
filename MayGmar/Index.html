@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>MayGmar</title>
+<style>
+
+html
+{
+  	height: 100%;
+}
+
+body
+{
+  	height: 4000px;
+	width: 100%;
+	font-family: "Segoe UI", arial, helvetica, freesans, sans-serif;
+	margin: 0px;
+	color: #333;
+	background-color: #fff;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+.MayGmar
+{
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	visibility: visible;
+}
+
+.MayGmarImg 
+{
+	-webkit-transform: translateZ(0);
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	visibility: inherit;
+}
+
+</style>
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="MayGmar" id="_3_face">
+	<img class="MayGmarImg" src="Images/face.png""/>
+</div>
+
+<div class="MayGmar" id="_2_body">
+	<img class="MayGmarImg" src="Images/body.png"/>
+</div>
+
+<div class="MayGmar" id="_1_chair">
+	<img class="MayGmarImg" src="Images/chair.png"/>
+</div>
+
+<div class="MayGmar" id="_4_maskdown">
+	<img class="MayGmarImg" src="Images/maskdown.png"/>
+</div>
+
+<div class="MayGmar" id="_5_maskup">
+	<img class="MayGmarImg" src="Images/maskup.png"/>
+</div>
+
+
+<div class="MayGmar" id="_6_shachalot">
+	<img class="MayGmarImg" src="Images/shachalot.png"/>
+</div>
+
+
+<div class="MayGmar" id="_7_eyes">
+	<img class="MayGmarImg" src="Images/eyes.png"/>
+</div>
+
+
+
+
+
+
+
+<script src="ObjectsUtils.js"></script>
+<script src="MaysAction.js"></script>
+
+<script>
+
+mouseWheelPos = 0;
+mouseWheelPosTarget = 0;
+
+window.onload = function() {
+
+	Start();
+
+	if (document.body.addEventListener) {
+		document.body.addEventListener("mousewheel", MouseWheelHandler, false);
+		document.body.addEventListener("DOMMouseScroll", MouseWheelHandler, false);
+	}
+	else document.body.attachEvent("onmousewheel", MouseWheelHandler);
+	
+	function MouseWheelHandler(e) {
+
+		// cross-browser wheel delta
+		var e = window.event || e;
+		var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+
+		mouseWheelPosTarget = document.scrollingElement.scrollTop;
+
+
+	}
+
+	var start = null;
+	function step(timestamp) {
+		mouseWheelPos = document.scrollingElement.scrollTop;
+		Sync();
+		window.requestAnimationFrame(step);
+	}
+
+	window.requestAnimationFrame(step);
+
+}	
+</script>
+
+</body>
+</html>
